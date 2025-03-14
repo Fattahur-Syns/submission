@@ -53,20 +53,21 @@ data_selection = st.multiselect("Pilih Kolom Data untuk Ditampilkan", df.columns
 st.write("### Data yang Dipilih Sesuai Kota")
 st.dataframe(df_filtered[data_selection])
 
-title_html = """
-### 📌 Kesimpulan
-"""
-st.markdown(title_html, unsafe_allow_html=True)
-
+# Menampilkan kesimpulan dari file notebook
 st.write("### Kesimpulan Analisis")
-import json
 
 with open("notebook.ipynb", "r", encoding="utf-8") as notebook_file:
     notebook_content = json.load(notebook_file)
+    conclusion_text = ""
     for cell in notebook_content.get("cells", []):
         if cell.get("cell_type") == "markdown":
             cell_text = "".join(cell.get("source", []))
             if "Conclusion" in cell_text:
-                st.markdown("### 📌 Kesimpulan")
-                st.markdown(cell_text)
+                conclusion_text = cell_text
                 break
+    
+    if conclusion_text:
+        st.markdown("### 📌 Kesimpulan")
+        st.markdown(conclusion_text)
+    else:
+        st.write("Tidak ditemukan kesimpulan dalam notebook.")
