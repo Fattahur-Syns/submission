@@ -58,7 +58,8 @@ with open("notebook.ipynb", "r", encoding="utf-8") as notebook_file:
     notebook_content = notebook_file.read()
     if "Conclusion" in notebook_content:
         kesimpulan_start = notebook_content.find("Conclusion")
-        kesimpulan = notebook_content[kesimpulan_start:].split("\n", 1)[1]
-        st.write(kesimpulan)
+        kesimpulan_text = notebook_content[kesimpulan_start:].split("\n", 1)[1]
+        st.write("#### Ringkasan Kesimpulan")
+        st.write(kesimpulan_text.strip())
     else:
         st.write("Tidak ditemukan kesimpulan dalam notebook.")
