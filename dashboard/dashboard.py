@@ -52,3 +52,13 @@ data_selection = st.multiselect("Pilih Kolom Data untuk Ditampilkan", df.columns
 # Menampilkan data yang sesuai dengan kota yang dipilih
 st.write("### Data yang Dipilih Sesuai Kota")
 st.dataframe(df_filtered[data_selection])
+
+st.write("### Kesimpulan Analisis")
+with open("notebook.ipynb", "r", encoding="utf-8") as notebook_file:
+    notebook_content = notebook_file.read()
+    if "Conclusion" in notebook_content:
+        kesimpulan_start = notebook_content.find("Conclusion")
+        kesimpulan = notebook_content[kesimpulan_start:].split("\n", 1)[1]
+        st.write(kesimpulan)
+    else:
+        st.write("Tidak ditemukan kesimpulan dalam notebook.")
