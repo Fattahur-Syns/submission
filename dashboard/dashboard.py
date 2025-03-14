@@ -48,4 +48,4 @@ st.pyplot(fig)
 # Fitur interaktif untuk eksplorasi
 data_selection = st.multiselect("Pilih Kolom Data untuk Ditampilkan", df.columns, default=["datetime", "station", polutan])
 st.write("### Data yang Dipilih")
-st.dataframe(df[data_selection])
+st.dataframe(df_filtered[data_selection])
