@@ -54,20 +54,9 @@ st.write("### Data yang Dipilih Sesuai Kota")
 st.dataframe(df_filtered[data_selection])
 
 # Menampilkan kesimpulan dari file notebook
-st.write("### Kesimpulan Analisis")
+# Menampilkan kesimpulan analisis
+st.write("### 📌 Kesimpulan")
+st.markdown("1. **Hujan atau salju secara signifikan mengurangi jumlah penyewaan sepeda**, terbukti dari rata-rata penyewaan yang jauh lebih rendah pada kondisi cuaca buruk.")
+st.markdown("2. **Faktor utama yang berkontribusi terhadap jumlah penyewaan sepeda** adalah suhu (temp), diikuti oleh kelembapan (hum) dan kecepatan angin (windspeed), seperti yang ditunjukkan oleh korelasi yang lebih tinggi dalam heatmap.")
+st.markdown("3. **Musim juga mempengaruhi penyewaan**, dengan peningkatan jumlah penyewaan selama musim gugur dan kondisi cuaca cerah.")
 
-with open("notebook.ipynb", "r", encoding="utf-8") as notebook_file:
-    notebook_content = json.load(notebook_file)
-    conclusion_text = ""
-    for cell in notebook_content.get("cells", []):
-        if cell.get("cell_type") == "markdown":
-            cell_text = "".join(cell.get("source", []))
-            if "Conclusion" in cell_text:
-                conclusion_text = cell_text
-                break
-    
-    if conclusion_text:
-        st.markdown("### 📌 Kesimpulan")
-        st.markdown(conclusion_text)
-    else:
-        st.write("Tidak ditemukan kesimpulan dalam notebook.")
