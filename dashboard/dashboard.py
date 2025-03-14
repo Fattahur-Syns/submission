@@ -46,6 +46,9 @@ ax.set_title(f"Distribusi {polutan} per Bulan dan Tahun")
 st.pyplot(fig)
 
 # Fitur interaktif untuk eksplorasi
+# Fitur interaktif untuk eksplorasi
 data_selection = st.multiselect("Pilih Kolom Data untuk Ditampilkan", df.columns, default=["datetime", "station", polutan])
-st.write("### Data yang Dipilih")
+
+# Menampilkan data yang sesuai dengan kota yang dipilih
+st.write("### Data yang Dipilih Sesuai Kota")
 st.dataframe(df_filtered[data_selection])
