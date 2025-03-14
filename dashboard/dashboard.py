@@ -58,9 +58,15 @@ title_html = """
 """
 st.markdown(title_html, unsafe_allow_html=True)
 
-conclusion_text = """
-1. **Tren Polusi Udara**: Konsentrasi polutan bervariasi dari tahun ke tahun, dengan peningkatan signifikan pada bulan-bulan tertentu yang kemungkinan besar disebabkan oleh aktivitas industri dan kondisi cuaca. Kebijakan lingkungan yang lebih ketat juga berkontribusi terhadap penurunan kadar polutan pada periode tertentu.
+st.write("### Kesimpulan Analisis")
+import json
 
-2. **Faktor Eksternal**: Polusi udara dapat dipengaruhi oleh faktor seperti musim, kebijakan lingkungan, dan pola aktivitas manusia.
-"""
-st.markdown(conclusion_text)
+with open("notebook.ipynb", "r", encoding="utf-8") as notebook_file:
+    notebook_content = json.load(notebook_file)
+    for cell in notebook_content.get("cells", []):
+        if cell.get("cell_type") == "markdown":
+            cell_text = "".join(cell.get("source", []))
+            if "Conclusion" in cell_text:
+                st.markdown("### 📌 Kesimpulan")
+                st.markdown(cell_text)
+                break
