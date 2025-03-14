@@ -53,13 +53,14 @@ data_selection = st.multiselect("Pilih Kolom Data untuk Ditampilkan", df.columns
 st.write("### Data yang Dipilih Sesuai Kota")
 st.dataframe(df_filtered[data_selection])
 
-st.write("### Kesimpulan Analisis")
-with open("notebook.ipynb", "r", encoding="utf-8") as notebook_file:
-    notebook_content = notebook_file.read()
-    if "Conclusion" in notebook_content:
-        kesimpulan_start = notebook_content.find("Conclusion")
-        kesimpulan_text = notebook_content[kesimpulan_start:].split("\n", 1)[1]
-        st.write("#### Ringkasan Kesimpulan")
-        st.write(kesimpulan_text.strip())
-    else:
-        st.write("Tidak ditemukan kesimpulan dalam notebook.")
+title_html = """
+### 📌 Kesimpulan
+"""
+st.markdown(title_html, unsafe_allow_html=True)
+
+conclusion_text = """
+1. **Tren Polusi Udara**: Konsentrasi polutan bervariasi dari tahun ke tahun, dengan peningkatan signifikan pada bulan-bulan tertentu yang kemungkinan besar disebabkan oleh aktivitas industri dan kondisi cuaca. Kebijakan lingkungan yang lebih ketat juga berkontribusi terhadap penurunan kadar polutan pada periode tertentu.
+
+2. **Faktor Eksternal**: Polusi udara dapat dipengaruhi oleh faktor seperti musim, kebijakan lingkungan, dan pola aktivitas manusia.
+"""
+st.markdown(conclusion_text)
