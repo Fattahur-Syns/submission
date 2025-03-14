@@ -53,10 +53,14 @@ data_selection = st.multiselect("Pilih Kolom Data untuk Ditampilkan", df.columns
 st.write("### Data yang Dipilih Sesuai Kota")
 st.dataframe(df_filtered[data_selection])
 
-# Menampilkan kesimpulan dari file notebook
-# Menampilkan kesimpulan analisis
-st.write("### 📌 Kesimpulan")
-st.markdown("1. **Hujan atau salju secara signifikan mengurangi jumlah penyewaan sepeda**, terbukti dari rata-rata penyewaan yang jauh lebih rendah pada kondisi cuaca buruk.")
-st.markdown("2. **Faktor utama yang berkontribusi terhadap jumlah penyewaan sepeda** adalah suhu (temp), diikuti oleh kelembapan (hum) dan kecepatan angin (windspeed), seperti yang ditunjukkan oleh korelasi yang lebih tinggi dalam heatmap.")
-st.markdown("3. **Musim juga mempengaruhi penyewaan**, dengan peningkatan jumlah penyewaan selama musim gugur dan kondisi cuaca cerah.")
+title_html = """
+### 📌 Kesimpulan
+"""
+st.markdown(title_html, unsafe_allow_html=True)
 
+conclusion_text = """
+1. **Tren Polusi Udara**: Konsentrasi polutan bervariasi dari tahun ke tahun, dengan peningkatan signifikan pada bulan-bulan tertentu yang kemungkinan besar disebabkan oleh aktivitas industri dan kondisi cuaca. Kebijakan lingkungan yang lebih ketat juga berkontribusi terhadap penurunan kadar polutan pada periode tertentu.
+
+2. **Faktor Eksternal**: Polusi udara dapat dipengaruhi oleh faktor seperti musim, kebijakan lingkungan, dan pola aktivitas manusia.
+"""
+st.markdown(conclusion_text)
