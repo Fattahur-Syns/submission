@@ -14,7 +14,7 @@ df = load_data()
 # Sidebar untuk memilih kota dan polutan
 st.sidebar.header("Pengaturan Visualisasi")
 kota_options = ["Semua Kota"] + list(df["station"].unique())
-polutan_options = ["Semua Polutan"] + [col for col in df.columns if col not in ["datetime", "station", "year", "month"]]
+polutan_options = [col for col in df.columns if col not in ["datetime", "station", "year", "month"]]
 
 kota = st.sidebar.multiselect("Pilih Kota", kota_options, default=["Semua Kota"])
 polutan = st.sidebar.multiselect("Pilih Polutan", polutan_options, default=["PM2.5"])
